@@ -114,6 +114,7 @@ public class ProductPage extends BaseClass {
 
 	public String getProductPriceFromProductPage(String productName) {
 		printTestSteps("Capture price of “" + productName + "” from “Products” page");
+		driverWait(500);
 		return getWebUtil().getText(driver, By.xpath("//div[text()='" + productName
 				+ "']/ancestor::div[@class='inventory_item_description']//div[@class='inventory_item_pricer']"));
 	}

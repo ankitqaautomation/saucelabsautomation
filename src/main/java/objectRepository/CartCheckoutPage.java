@@ -45,12 +45,12 @@ public class CartCheckoutPage extends BaseClass {
 	
 	
 	public void clickContinueButton() {
-		getWebUtil().clickElement(driver, continueButton);
+		getWebUtil().clickElementUntilVisible(driver, checkOutButton);
 		printTestSteps("Click “Continue” button");
 	}
 	
 	public void clickFinishButton() {
-		getWebUtil().clickElement(driver, removeOnesieButton);
+		getWebUtil().clickElementUntilVisible(driver, removeOnesieButton);
 		printTestSteps("Click “Finish” button on “Checkout: Overview” page");
 	}
 	

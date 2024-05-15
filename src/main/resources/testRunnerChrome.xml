@@ -3,14 +3,31 @@
 <suite name="SauceLabs">
 	<parameter name="browser" value="chrome" />
 
-	
+
 	<test name="UserBasedTests">
 		<classes>
 			<class name="saucelabsTest.UserBasedTest"></class>
 		</classes>
 	</test>
-	
-	
+
+	<test name="SocialProfileTests">
+		<classes>
+			<class name="saucelabsTest.SocialProfileTest"></class>
+		</classes>
+	</test>
+
+	<test name="LoginBasedTests">
+		<classes>
+			<class name="saucelabsTest.LoginPageTest"></class>
+		</classes>
+	</test>
+
+	<test name="ProductsBasedTests">
+		<classes>
+			<class name="saucelabsTest.ProductPageTest"></class>
+		</classes>
+	</test>
+
 
 </suite> <!--
 Suite -->

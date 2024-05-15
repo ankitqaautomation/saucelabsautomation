@@ -82,7 +82,14 @@ public class ProductPageTest extends InitializationHelper {
 		//Click “Remove” button for “Sauce Labs Onesie” on “Your Cart“ page
 		cartCheckOutPage.clickRemoveOnesieButton();
 		
+		//Click “Checkout” button on “Your Cart“ page
+		cartCheckOutPage.clickCheckOutButton();
 		
+		//Fill the “Checkout: Your Information” page (Random data).
+		cartCheckOutPage.fillCheckoutForm();
+		
+		//Click “Continue” button
+		cartCheckOutPage.clickContinueButton();
         
 	}
 	
