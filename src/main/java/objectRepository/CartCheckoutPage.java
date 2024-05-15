@@ -34,6 +34,7 @@ public class CartCheckoutPage extends BaseClass {
 	private final By zipCodeTextBox = By.id("postal-code");
 	private final By continueButton = By.id("continue");
 	private final By finishButton = By.id("finish");
+	private final By removeOnesieButton = By.id("remove-sauce-labs-onesie");
 	
 	
 	
@@ -49,8 +50,13 @@ public class CartCheckoutPage extends BaseClass {
 	}
 	
 	public void clickFinishButton() {
-		getWebUtil().clickElement(driver, finishButton);
+		getWebUtil().clickElement(driver, removeOnesieButton);
 		printTestSteps("Click “Finish” button on “Checkout: Overview” page");
+	}
+	
+	public void clickRemoveOnesieButton() {
+		getWebUtil().clickElement(driver, finishButton);
+		printTestSteps("Click “Remove” button for “Sauce Labs Onesie” on “Your Cart“ page");
 	}
 	
 	private void enterFirstName(String text) {
@@ -73,6 +79,10 @@ public class CartCheckoutPage extends BaseClass {
 		printTestSteps("Fill the “Checkout: Your Information” page (Random data).");
 	}
 	
+	public String getProductPriceFromCartPage(String productName) {
+		printTestSteps("Capture price of “"+productName+"” from “Cart” page");
+		return getWebUtil().getText(driver, By.xpath("//div[text()='"+productName+"']/ancestor::div[@class='cart_item_label']//div[@data-test='inventory-item-price']"));
+	}
 	
 	
 	

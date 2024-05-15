@@ -46,7 +46,7 @@ public class InitializationHelper {
 
 	    @AfterClass
 	    public void setupAfterSuite() {
-	        this.driver.quit();
+	        driver.quit();
 	    }
 	    
 	    @AfterMethod
@@ -58,22 +58,6 @@ public class InitializationHelper {
 	    	
 	    }
 	    
-		public String getPageURL() {
-			return this.driver.getCurrentUrl();
-		}
-
-		public String getPageTitle() {
-			return this.driver.getTitle();
-		}
-
-		public String getPageSource() {
-			return this.driver.getPageSource();
-		}
-
-
-		public boolean verifyPageTitle(String title) {
-			return this.driver.getTitle().equalsIgnoreCase(title);
-		}
 	    
 
 }

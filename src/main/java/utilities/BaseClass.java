@@ -181,4 +181,12 @@ public class BaseClass {
 			e.printStackTrace();
 		}
 	}
+
+	public static void assertPriceValues(String price1, String price2, String message) {
+		
+		validate(price1.equalsIgnoreCase(price2), message, true);
+		
+	} 
+	
+
 }
