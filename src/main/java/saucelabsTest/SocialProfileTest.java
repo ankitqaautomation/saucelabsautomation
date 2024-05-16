@@ -17,7 +17,7 @@ import utilities.BaseClass;
 /**
  * @author ankitsharma 13 May 2024
  */
-public class SocialProfileTest extends InitializationHelper {
+public class SocialProfileTest extends TestBase {
 
 	LoginPage loginPage;
 	HomePage homePage;
@@ -30,7 +30,7 @@ public class SocialProfileTest extends InitializationHelper {
 	}
 
 	@Test(testName = "Bonus Test case 5", description = "Verify that user should be able to open social links")
-	public void socialLinksTest() throws InterruptedException {
+	public void socialLinksTest() throws IOException {
 		// Login using credentials
 		loginPage.login(properties.getProperty("username"), properties.getProperty("password"));
 

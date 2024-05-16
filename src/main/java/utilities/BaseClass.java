@@ -17,6 +17,8 @@ import org.testng.Reporter;
 
 import commons.utilities.Report;
 import commons.utilities.TESTSTATUS;
+import io.appium.java_client.functions.ExpectedCondition;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -37,7 +39,6 @@ public class BaseClass {
 	protected final WebDriverWait wait;
 	protected final Properties properties;
 	protected final Properties XPATH;
-	protected final Actions actions;
 	protected final By cartCount = By.xpath("//div[@id='shopping_cart_container']/a/span");
 
 	public BaseClass(WebDriver driver) throws IOException {
@@ -45,11 +46,15 @@ public class BaseClass {
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		this.properties = PropertyReader.getProperties("config");
 		this.XPATH = PropertyReader.getProperties("xpath");
-		this.actions = new Actions(driver);
 	}
 
 	public WebUtil getWebUtil() {
-		return new WebUtil();
+		try {
+			return new WebUtil(driver);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public String getPageURL() {
@@ -63,7 +68,7 @@ public class BaseClass {
 	public String getPageSource() {
 		return this.driver.getPageSource();
 	}
-	
+
 	public void refreshBrowser() {
 		driver.navigate().refresh();
 		printTestSteps("Refresh the browser");
@@ -105,15 +110,15 @@ public class BaseClass {
 	/**
 	 * 
 	 * @param title : read the the page title from config.properties
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
-	public void closeTabUsingTitle(String title){
+	public void closeTabUsingTitle(String title) {
 		// Get the Set of all the windows
 		Set<String> windowHandles = driver.getWindowHandles();
 		// Run the loop to close a specific window on the basis of title
 		for (String handle : windowHandles) {
 			driver.switchTo().window(handle);
-			driverWait(1000);
+			waitForPageTitle();
 			if (driver.getTitle().equals(title)) {
 				driver.close();
 				printTestSteps("Close “" + title + "” tab");
@@ -126,11 +131,12 @@ public class BaseClass {
 	 * 
 	 * @param title : read the the page title from config.properties
 	 */
-	public void moveToTabUsingTitle(String title){
+	public void moveToTabUsingTitle(String title) {
 		Set<String> windowHandles = driver.getWindowHandles();
+		// Run the loop to move on a specific window on the basis of title
 		for (String handle : windowHandles) {
 			driver.switchTo().window(handle);
-			driverWait(1000);
+			waitForPageTitle();
 			if (driver.getTitle().equals(title)) {
 				printTestSteps("Navigate to “" + title + "” tab");
 				break;
@@ -138,14 +144,28 @@ public class BaseClass {
 		}
 	}
 
+	public void waitForPageTitle() {
+		try {
+			for (int count = 1; count <= 60; count++) {
+				if (driver.getTitle() != null && !driver.getTitle().isEmpty()) {
+					break;
+				} else {
+					Thread.sleep(500);
+				}
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
 	/**
 	 * 
 	 * @param driver
 	 * @param screenshotName
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
-	public static void captureScreenshot(WebDriver driver, String screenshotName){
-		driverWait(2000);
+	public static void captureScreenshot(WebDriver driver, String screenshotName) {
 		// Convert WebDriver object to TakesScreenshot
 		TakesScreenshot ts = (TakesScreenshot) driver;
 
@@ -172,21 +192,11 @@ public class BaseClass {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void driverWait(long millis){
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
-	public static void assertPriceValues(String price1, String price2, String message) {
-		
-		validate(price1.equalsIgnoreCase(price2), message, true);
-		
-	} 
-	
+	public void compareStringValues(String expectedString, String actualString, String message) {
+
+		validate(expectedString.equalsIgnoreCase(actualString), message, true);
+
+	}
 
 }

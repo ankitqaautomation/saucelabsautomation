@@ -23,13 +23,11 @@ import utilities.PropertyReader;
 /**
  * @author ankitsharma 13 May 2024
  */
-public class InitializationHelper {
+public class TestBase {
 	
 	 	public WebDriver driver;
 	    protected Properties properties;
 	    protected Properties XPATH;
-	    protected ChromeOptions options;
-	    protected SoftAssert softAssert;
 
 	    @BeforeClass
 	    @Parameters({"browser"})
@@ -39,13 +37,13 @@ public class InitializationHelper {
 	    	}else if(browser.equalsIgnoreCase("chrome")) {
 	    		this.driver = new ChromeDriver();
 	    	}
+	    	driver.manage().window().maximize();	
 	        this.properties = PropertyReader.getProperties("config");
 	        this.XPATH = PropertyReader.getProperties("xpath");
-	        this.softAssert = new SoftAssert();
 	    }
 
 	    @AfterClass
-	    public void setupAfterSuite() {
+	    public void tearDown() {
 	        driver.quit();
 	    }
 	    

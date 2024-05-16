@@ -3,7 +3,6 @@
 <suite name="SauceLabs">
 	<parameter name="browser" value="chrome" />
 
-
 	<test name="UserBasedTests">
 		<classes>
 			<class name="saucelabsTest.UserBasedTest"></class>

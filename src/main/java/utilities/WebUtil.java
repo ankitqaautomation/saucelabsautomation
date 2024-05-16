@@ -16,34 +16,39 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * @author ankitsharma 14 May 2024
  */
-public class WebUtil {
+public class WebUtil extends BaseClass{
 	
-	public String getText(WebDriver driver, By by) {
-		return driver.findElement(by).getText();
+	/**
+	 * @param driver
+	 * @throws IOException
+	 */
+	public WebUtil(WebDriver driver) throws IOException {
+		super(driver);
+	}
+
+	
+	public String getText(By by) {
+		return getElementUntilVisible(by).getText();
 	} 
 	
-	public WebElement getElement(WebDriver driver, By by) {
-		return driver.findElement(by);
+	public WebElement getElement(By by) {
+		return getElementUntilVisible(by);
 	} 
 	
-	public List<WebElement> getElementsList(WebDriver driver, By by) {
+	public List<WebElement> getElementsList(By by) {
 		return driver.findElements(by);
 	}
 	
-	public void clickElement(WebDriver driver, By by) {
-		 driver.findElement(by).click();
+	public void clickElement(By by) {
+		getElementUntilVisible(by).click();
 	}
 	
-	public void clickElementUntilVisible(WebDriver driver, By by) {
-		new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOfElementLocated(by)).click();
+	private WebElement getElementUntilVisible(By by) {
+		return new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(properties.getProperty("wait_seconds")))).until(ExpectedConditions.visibilityOfElementLocated(by));
 	}
 	
-	public WebElement getElementUntilVisible(WebDriver driver, By by) {
-		return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(by));
-	}
-	
-	public void enterText(WebDriver driver, By by,String text) {
-		driver.findElement(by).sendKeys(text);
+	public void enterText(By by,String text) {
+		getElementUntilVisible(by).sendKeys(text);
 	}
 
 

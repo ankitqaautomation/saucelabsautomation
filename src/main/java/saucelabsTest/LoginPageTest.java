@@ -20,7 +20,7 @@ import utilities.BaseClass;
 /**
  * @author ankitsharma 13 May 2024
  */
-public class LoginPageTest extends InitializationHelper {
+public class LoginPageTest extends TestBase {
 
 	LoginPage loginPage;
 	HomePage homePage;
@@ -39,7 +39,7 @@ public class LoginPageTest extends InitializationHelper {
 	}
 
 	@Test(testName = "Test case 1 (Successful Login and Logout)", description = "Verify that user should be successfully login and logout")
-	public void loginAndLogoutTest() {
+	public void loginAndLogoutTest() throws IOException {
 		// Login using credentials
 		loginPage.login(properties.getProperty("username"), properties.getProperty("password"));
 
@@ -51,7 +51,7 @@ public class LoginPageTest extends InitializationHelper {
 	}
 
 	@Test(testName = "Test case 2 (Failed Login)", description = "Verify that user should not be able to login with locked-out user")
-	public void loginTestWithLockedUser() {
+	public void loginTestWithLockedUser() throws IOException {
 		// Login using credentials
 		loginPage.login(properties.getProperty("locked_username"), properties.getProperty("password"));
 
@@ -60,7 +60,7 @@ public class LoginPageTest extends InitializationHelper {
 	}
 
 	@Test(dataProvider = "loginCredentials", description = "Verify user should Log in Successfully Clicking button")
-	public void loginUsingDataProvider(String username, String password) {
+	public void loginUsingDataProvider(String username, String password) throws IOException {
 		// Open URL
 		driver.get(properties.getProperty("URL"));
 

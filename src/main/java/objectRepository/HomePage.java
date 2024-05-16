@@ -37,13 +37,13 @@ public class HomePage extends BaseClass {
 		super(driver);
 	}
 
-	public void logout() {
+	public void logout() throws IOException{
 		clickOnMenuIcon();
 		clickLogout();
 		printTestSteps("Logout Successfully");
 	}
 
-	public void resetAppState() {
+	public void resetAppState() throws IOException{
 		clickOnMenuIcon();
 		clickResetAppButton();
 		closeMenu();
@@ -54,64 +54,64 @@ public class HomePage extends BaseClass {
     }
     
     
-    public void goToAllItems() {
+    public void goToAllItems() throws IOException{
     	clickOnMenuIcon();
     	clickOnAllItems();
     }
     
     
 	// click on the All Items Button
-	public void clickOnAllItems() {
-		getWebUtil().clickElementUntilVisible(driver, allItemsButton);
+	public void clickOnAllItems() throws IOException {
+		getWebUtil().clickElement(allItemsButton);
 		printTestSteps("Click “All Items” within the “Menu” Icon on top left of the header.");
 	}
     
 
 	// click on the Menu Button
-	public void clickOnMenuIcon() {
-		getWebUtil().clickElement(driver, hamburgerMenuIcon);
+	public void clickOnMenuIcon() throws IOException {
+		getWebUtil().clickElement(hamburgerMenuIcon);
 		printTestSteps("Click “Menu” Icon on top left of the header");
 	}
 
 	// click on the Logout Button
-	public void clickLogout() {
-		getWebUtil().clickElementUntilVisible(driver, logoutButton);
+	public void clickLogout()throws IOException {
+		getWebUtil().clickElement(logoutButton);
 		printTestSteps("Click “Logout”");
 	}
 
 	// click on the Logout Button
-	public void clickResetAppButton() {
-		getWebUtil().clickElementUntilVisible(driver, resetAppButton);
+	public void clickResetAppButton() throws IOException{
+		getWebUtil().clickElement(resetAppButton);
 		printTestSteps("Click “Reset App State” within the “Menu” Icon on top left of the header.");
 	}
 
 	// click on the Close Menu "X"
-	public void closeMenu() {
-		getWebUtil().clickElement(driver, closeMenu);
+	public void closeMenu() throws IOException{
+		getWebUtil().clickElement(closeMenu);
 		printTestSteps("Close Menu");
 	}
 
 	// click on the Facebook icon
-	public void clickFacebookLink() {
-		getWebUtil().clickElement(driver, facebookLink);
+	public void clickFacebookLink()throws IOException {
+		getWebUtil().clickElement(facebookLink);
 		printTestSteps("Click “Facebook” icon at the bottom left of the footer");
 	}
 
 	// click on the Twitter icon
-	public void clickTwitterLink() {
-		getWebUtil().clickElement(driver, twitterLink);
+	public void clickTwitterLink() throws IOException{
+		getWebUtil().clickElement(twitterLink);
 		printTestSteps("Click “Twitter” icon at the bottom left of the footer");
 	}
 
 	// click on the LinkedIn icon
-	public void clickLinkedinLink() {
-		getWebUtil().clickElement(driver, linkedinLink);
+	public void clickLinkedinLink() throws IOException{
+		getWebUtil().clickElement(linkedinLink);
 		printTestSteps("Click “Linkedin” icon at the bottom left of the footer.");
 	}
 
 	// get the heading of the Home Page
-	public String getPageHeading() {
-		return getWebUtil().getText(driver, homepageHeading);
+	public String getPageHeading() throws IOException{
+		return getWebUtil().getText(homepageHeading);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class HomePage extends BaseClass {
 	 * @param name
 	 * @throws InterruptedException
 	 */
-	public void clickOnSocialMediaIcon(SocialMedia name) {
+	public void clickOnSocialMediaIcon(SocialMedia name) throws IOException{
 
 		switch (name.toString()) {
 		case "TWITTER":

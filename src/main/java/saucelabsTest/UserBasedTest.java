@@ -18,7 +18,7 @@ import utilities.BaseClass;
 /**
  * @author ankitsharma 13 May 2024
  */
-public class UserBasedTest extends InitializationHelper {
+public class UserBasedTest extends TestBase {
 
 	LoginPage loginPage;
 	HomePage homePage;
@@ -35,7 +35,7 @@ public class UserBasedTest extends InitializationHelper {
 	}
 
 	@Test(testName = "Test case 6 (Performance user)")
-	public void performanceUserTest() {
+	public void performanceUserTest() throws IOException {
 		// Login using credentials
 		loginPage.login(properties.getProperty("performance_username"), properties.getProperty("password"));
 
@@ -60,7 +60,7 @@ public class UserBasedTest extends InitializationHelper {
 	}
 	
 	@Test(testName = "Test case 4 (Error User)")
-	public void errorUserTest(){
+	public void errorUserTest() throws IOException{
 		// Login using credentials
 		loginPage.login(properties.getProperty("error_username"), properties.getProperty("password"));
 
@@ -91,7 +91,7 @@ public class UserBasedTest extends InitializationHelper {
 	
 	
 	@Test(testName = "Test case 5 (Browser Refresh)")
-	public void browserRefreshTest(){
+	public void browserRefreshTest() throws IOException{
 		// Login using credentials
 		loginPage.login(properties.getProperty("username"), properties.getProperty("password"));
 
