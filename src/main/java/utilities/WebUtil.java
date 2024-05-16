@@ -22,7 +22,7 @@ public class WebUtil extends BaseClass{
 	 * @param driver
 	 * @throws IOException
 	 */
-	public WebUtil(WebDriver driver) throws IOException {
+	public WebUtil(WebDriver driver) throws IOException  {
 		super(driver);
 	}
 
